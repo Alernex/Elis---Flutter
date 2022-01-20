@@ -1,0 +1,37 @@
+void main() 
+{
+  int noSteps = 8;
+  String stepSequence = "UDDDUDUU";
+  List stepSequenceList = [];
+  int altitude = 0; //sea level
+  int valley = 0;
+  bool flag = false;
+  
+  //translate string into ascii code into characters and add to list
+  stepSequence.runes.forEach((int rune){
+    var character=new String.fromCharCode(rune);
+    stepSequenceList.add(character);});
+   
+  for (int i=0; i < noSteps; i++){
+
+      if (stepSequenceList[i] == "U"){
+        altitude += 1;
+      }
+      else if (stepSequenceList[i] == "D"){
+        altitude -= 1;
+      }
+    
+    //check to verify altitude on flag
+    if (altitude < 0){
+      //flag used to determine if is the same valley
+      if(flag == false){
+        valley += 1;
+      }
+      flag = true;
+    }
+    else{
+      flag = false;
+    }  
+  }
+  print(valley);
+} 
